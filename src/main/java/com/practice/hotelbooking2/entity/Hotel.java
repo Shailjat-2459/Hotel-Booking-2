@@ -11,7 +11,7 @@ import javax.validation.constraints.Min;
 @Entity
 public class Hotel implements Serializable{
 	
-	
+	//Creating Table Hotel
 	private static final long serialVersionUID = 1L;
 	@Id
 	private Long hotelId;
