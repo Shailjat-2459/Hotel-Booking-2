@@ -35,6 +35,8 @@ public class RestClientHotel {
          httpGetAllHotels();
        // httpGetHotel();
         //httpAddHotel();
+        //httpUpdateHotel();
+       // httpDeleteHotel();
     }
 
     public static void httpGetAllHotels() throws IOException, InterruptedException {
@@ -52,7 +54,7 @@ public class RestClientHotel {
         HttpResponse<String> httpResponse=httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
         System.out.println(httpResponse.statusCode());
         if(httpResponse.statusCode()== 200 && httpResponse!=null) {
-            System.out.println(httpResponse.body());
+            LOGGER.info(httpResponse.body());
         }
         else{
             LOGGER.error("An exception occurred!");
@@ -75,7 +77,7 @@ public class RestClientHotel {
         HttpResponse<String> httpResponse=httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
         System.out.println(httpResponse.statusCode());
         if(httpResponse.statusCode()== 200 && httpResponse!=null) {
-            System.out.println(httpResponse.body());
+            LOGGER.info(httpResponse.body());
         }
         else{
             LOGGER.error("An exception occurred!");
@@ -102,7 +104,7 @@ public class RestClientHotel {
         HttpResponse<String> httpResponse=client.send(request, HttpResponse.BodyHandlers.ofString());
         System.out.println(httpResponse.statusCode());
         if(httpResponse.statusCode()== 200 && httpResponse!=null) {
-            System.out.println(httpResponse.body());
+            LOGGER.info(httpResponse.body());
         }
         else{
             LOGGER.error("An exception occurred!");
@@ -110,6 +112,54 @@ public class RestClientHotel {
 
     }
 
+    public static void httpUpdateHotel() throws IOException, InterruptedException {
+        String cityId="Noida";
+        Long hotelId=201L;
+        String URL_PUT = "http://localhost:8080/city/"+cityId+"/hotel/"+hotelId;;
+        String FILE_JSON = "/home/shailjaupdhyay/IdeaProjects/response.json";
+
+        // client HTTP
+        HttpClient client = HttpClient.newHttpClient();
+
+        // Request HTTP
+        java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
+                .PUT(java.net.http.HttpRequest.BodyPublishers.ofFile(Path.of(FILE_JSON)))
+                .timeout(Duration.ofSeconds(10))
+                .header("Content-Type","application/json")
+                .uri(URI.create(URL_PUT))
+                .build();
+
+        HttpResponse<String> httpResponse=client.send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(httpResponse.statusCode());
+        if(httpResponse.statusCode()== 200 && httpResponse!=null) {
+            LOGGER.info(httpResponse.body());
+        }
+        else{
+            LOGGER.error("An exception occurred!");
+        }
+    }
+
+    public static void httpDeleteHotel() throws IOException, InterruptedException {
+        String cityId="Noida";
+        Long hotelId=201L;
+        String uri = "http://localhost:8080/city/"+cityId+"/hotel/"+hotelId;
+        java.net.http.HttpRequest httpRequest = (java.net.http.HttpRequest) newBuilder()
+                .uri(URI.create(uri))
+                .timeout(Duration.ofMinutes(1))
+                .header("Content-Type", "application/json")
+                .DELETE()
+                .version(HttpClient.Version.HTTP_2)
+                .build();
+        HttpClient httpClient = HttpClient.newBuilder()
+                .build();
+        HttpResponse<String> httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+        System.out.println(httpResponse.statusCode());
+        if (httpResponse.statusCode() == 200 && httpResponse != null) {
+            LOGGER.info(httpResponse.body());
+        } else {
+            LOGGER.error("An exception occurred!");
+        }
+    }
 
     public static void getAllHotels(){
         String cityId="Noida";

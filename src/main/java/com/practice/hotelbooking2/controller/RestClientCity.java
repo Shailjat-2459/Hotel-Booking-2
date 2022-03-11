@@ -64,7 +64,7 @@ public class RestClientCity {
         HttpResponse<String> httpResponse=httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
         System.out.println(httpResponse.statusCode());
         if(httpResponse.statusCode()== 200 && httpResponse!=null) {
-            System.out.println(httpResponse.body());
+            LOGGER.info(httpResponse.body());
         }
         else{
             LOGGER.error("An exception occurred!");
@@ -96,7 +96,7 @@ public class RestClientCity {
         HttpResponse<String> httpResponse=httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
         System.out.println(httpResponse.statusCode());
         if(httpResponse.statusCode()== 200 && httpResponse!=null) {
-            System.out.println(httpResponse.body());
+            LOGGER.info(httpResponse.body());
         }
         else{
             LOGGER.error("An exception occurred!");
@@ -122,7 +122,7 @@ public class RestClientCity {
          HttpResponse<String> httpResponse=client.send(request, HttpResponse.BodyHandlers.ofString());
          System.out.println(httpResponse.statusCode());
          if(httpResponse.statusCode()== 200 && httpResponse!=null) {
-             System.out.println(httpResponse.body());
+             LOGGER.info(httpResponse.body());
          }
          else{
              LOGGER.error("An exception occurred!");
@@ -139,7 +139,7 @@ public class RestClientCity {
         String URL_PUT = "http://localhost:8080/city/Mumbai";
         String FILE_JSON = "/home/shailjaupdhyay/IdeaProjects/response.json";
 
-        // cliente HTTP
+        // client HTTP
         HttpClient client = HttpClient.newHttpClient();
 
         // Request HTTP
@@ -151,9 +151,9 @@ public class RestClientCity {
                 .build();
 
         HttpResponse<String> httpResponse=client.send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println(httpResponse.statusCode());
+            System.out.println(httpResponse.statusCode());
         if(httpResponse.statusCode()== 200 && httpResponse!=null) {
-            System.out.println(httpResponse.body());
+            LOGGER.info(httpResponse.body());
         }
         else{
             LOGGER.error("An exception occurred!");
@@ -174,7 +174,7 @@ public class RestClientCity {
         HttpResponse<String> httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
         System.out.println(httpResponse.statusCode());
         if (httpResponse.statusCode() == 200 && httpResponse != null) {
-            System.out.println(httpResponse.body());
+            LOGGER.info(httpResponse.body());
         } else {
             LOGGER.error("An exception occurred!");
         }
